@@ -45,6 +45,10 @@ const instructorSchema = new Schema({
     required: true,
     validate: (v) => v.length > 6,
   },
+  role: {
+    type: String,
+    default: "instructor",
+  },
   createAt: {
     type: Date,
     default: Date.now,

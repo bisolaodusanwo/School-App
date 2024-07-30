@@ -1,8 +1,9 @@
+const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+dotenv.config();
 
-mongoose.connect(
-  "mongodb+srv://bisolaodusanwo:odusanwo@schoolapp.rsqd2x0.mongodb.net/sgt?retryWrites=true&w=majority&appName=Schoolapp/sgt"
-);
+console.log(process.env.MONGODB_CONNECTION_STRING);
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
 
 const db = mongoose.connection;
 

@@ -22,3 +22,4 @@ router
   .delete("/student/:studentId", deleteStudent);
 
 module.exports = router;
+

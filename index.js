@@ -3,6 +3,12 @@ const db = require("./dbConn/conn");
 const courseRoute = require("./routes/courseRoute");
 const authRoute = require("./routes/authRoute");
 const studentRoute = require("./routes/studentRoute");
+const instructorRoute = require("./routes/instructorRoute");
+const {
+  verifyToken,
+  isStudent,
+  isInstructor,
+} = require("./middleware/authMiddleware");
 
 const app = express();
 const port = 3003;
@@ -33,8 +39,10 @@ app.listen(port, () => {
 });
 
 //improting the student route
-app.use("/api/v1", courseRoute);
 app.use("/api/v1", authRoute);
+app.use("/api/v1", courseRoute);
+app.use("api/v1", verifyToken, isStudent, studentRoute);
+app.use("/api/v1", verifyToken, isInstructor, instructorRoute);
 app.use("/api/v1", studentRoute);
 
 // app.get("/", (req, res) => {
